@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace NPIRegistry\Result;
+namespace NPIRegistry\IndividualProviders;
 
 /**
  * @see https://npiregistry.cms.hhs.gov/api-page

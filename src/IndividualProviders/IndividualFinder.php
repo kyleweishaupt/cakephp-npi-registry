@@ -33,7 +33,7 @@ class IndividualFinder
 	 * @param bool $exact
 	 * @return array<NPIRegistry\IndividualProviders\Individual>
 	 */
-	public function searchByName(string $firstName, string $lastName, bool $exact = true): array
+	public static function searchByName(string $firstName, string $lastName, bool $exact = true): array
 	{
 		$results = HttpClient::sendRequest([
 			'enumeration_type' => Constants::ENUMERATION_TYPE_INDIVIDUAL,
@@ -54,7 +54,7 @@ class IndividualFinder
 	 * @param bool $exact
 	 * @return array<NPIRegistry\IndividualProviders\Individual>
 	 */
-	public function searchByNameAndState(string $firstName, string $lastName, string $state, bool $exact = true): array
+	public static function searchByNameAndState(string $firstName, string $lastName, string $state, bool $exact = true): array
 	{
 		$results = HttpClient::sendRequest([
 			'enumeration_type' => Constants::ENUMERATION_TYPE_INDIVIDUAL,
@@ -73,7 +73,7 @@ class IndividualFinder
 	 * @param string $npiNumber
 	 * @return array<NPIRegistry\IndividualProviders\Individual>
 	 */
-	public function searchByNumber(string $npiNumber): array
+	public static function searchByNumber(string $npiNumber): array
 	{
 		$results = HttpClient::sendRequest([
 			'enumeration_type' => Constants::ENUMERATION_TYPE_INDIVIDUAL,
