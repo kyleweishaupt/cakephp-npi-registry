@@ -2,7 +2,7 @@
   "name": "kyleweishaupt/cakephp-npi-registry",
   "description": "CakePHP Plugin for interacting with the NPPES NPI Registry.",
   "type": "cakephp-plugin",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "keywords": [
     "cakephp",
     "cms",

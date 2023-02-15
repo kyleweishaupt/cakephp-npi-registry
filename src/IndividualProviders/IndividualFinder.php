@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace NPIRegistry\IndividualProviders;
 
 use NPIRegistry\Api\HttpClient;
+use NPIRegistry\IndividualProviders\IndividualParser;
 use NPIRegistry\Static\Constants;
 
 class IndividualFinder
@@ -23,6 +24,26 @@ class IndividualFinder
 		]);
 
 		return !empty($response);
+	}
+
+	/**
+	 * Lookup using request DTO
+	 *
+	 * @param \NPIRegistry\IndividualProviders\IndividualRequest $request
+	 * @return array<NPIRegistry\IndividualProviders\Individual>
+	 */
+	public static function search(IndividualRequest $request, int $page = 1, int $limit = 25): array
+	{
+		$requestData = array_merge(
+			[
+				'enumeration_type' => Constants::ENUMERATION_TYPE_INDIVIDUAL
+			],
+			$request->toArray()
+		);
+
+		$results = HttpClient::sendRequest($requestData, $page, $limit);
+
+		return array_map(fn (array $result) => IndividualParser::parse($result), $results);
 	}
 
 	/**

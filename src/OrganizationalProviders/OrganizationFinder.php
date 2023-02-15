@@ -6,6 +6,7 @@ namespace NPIRegistry\OrganizationalProviders;
 
 use NPIRegistry\Api\HttpClient;
 use NPIRegistry\OrganizationalProviders\OrganizationParser;
+use NPIRegistry\OrganizationalProviders\OrganizationRequest;
 use NPIRegistry\Static\Constants;
 
 class OrganizationFinder
@@ -24,6 +25,26 @@ class OrganizationFinder
 		]);
 
 		return !empty($response);
+	}
+
+	/**
+	 * Lookup using request DTO
+	 *
+	 * @param \NPIRegistry\OrganizationalProviders\OrganizationRequest $request
+	 * @return array<NPIRegistry\OrganizationalProviders\Organization>
+	 */
+	public static function search(OrganizationRequest $request, int $page = 1, int $limit = 25): array
+	{
+		$requestData = array_merge(
+			[
+				'enumeration_type' => Constants::ENUMERATION_TYPE_ORGANIZATION
+			],
+			$request->toArray()
+		);
+
+		$results = HttpClient::sendRequest($requestData, $page, $limit);
+
+		return array_map(fn (array $result) => OrganizationParser::parse($result), $results);
 	}
 
 	/**

@@ -18,7 +18,7 @@ class HttpClient
 	public const API_PRETTY = false;
 
 	/**
-	 * Send a request to the CMS NPI Registry API and get array of results
+	 * Send an HTTP request to the CMS NPPES NPI Registry API and get array of results
 	 *
 	 * @param array $parameters
 	 * @param int $page
